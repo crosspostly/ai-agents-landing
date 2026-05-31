@@ -3,94 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI-агенты — твоя команда на 24 часа</title>
+  <title>AI-агенты — пока ты отдыхаешь, они работают</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #ffffff;
-      --bg-alt: #f6f5f4;
+      --bg-alt: #f7f6f3;
       --bg-dark: #1a1a1a;
-      --text: rgba(0,0,0,0.95);
-      --text-muted: #615d59;
-      --text-light: #a39e98;
-      --accent: #0075de;
-      --accent-hover: #005bab;
-      --success: #22c55e;
-      --danger: #ef4444;
-      --warning: #f59e0b;
+      --text: rgba(0,0,0,0.9);
+      --text-muted: #666;
+      --accent: #e85d04;
+      --accent2: #f48c06;
+      --success: #2d6a4f;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; background: var(--bg); overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; background: var(--bg); }
     
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    @keyframes slideRight {
-      from { opacity: 0; transform: translateX(-50px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    
-    @keyframes typewriter {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-    
-    @keyframes progressBar {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-8px) rotate(-2deg); }
-      75% { transform: translateX(8px) rotate(2deg); }
-    }
-    
-    @keyframes celebrate {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
     
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     
-    /* HERO - Emotional Hook */
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-      background-size: 200% 200%;
-      animation: gradientMove 15s ease infinite;
+      background: linear-gradient(160deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
       position: relative;
       overflow: hidden;
       padding: 80px 24px;
@@ -101,142 +42,144 @@
       position: absolute;
       inset: 0;
       background: 
-        radial-gradient(circle at 20% 80%, rgba(0, 117, 222, 0.3) 0%, transparent 40%),
-        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 40%);
+        radial-gradient(circle at 20% 80%, rgba(232, 93, 4, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(244, 140, 6, 0.2) 0%, transparent 45%);
     }
     
     .hero-content {
       position: relative;
       z-index: 10;
-      max-width: 800px;
+      max-width: 780px;
       margin: 0 auto;
       text-align: center;
     }
     
-    .hero-hook {
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: clamp(40px, 7vw, 64px);
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    
+    h1 {
+      font-size: clamp(38px, 6vw, 62px);
       font-weight: 700;
+      color: white;
       line-height: 1.1;
       margin-bottom: 24px;
       animation: fadeUp 0.8s ease-out;
     }
     
-    .hero-story {
-      font-size: clamp(18px, 2.5vw, 22px);
-      color: rgba(255,255,255,0.85);
-      max-width: 650px;
-      margin: 0 auto 40px;
+    h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero-sub {
+      font-size: clamp(17px, 2.2vw, 21px);
+      color: rgba(255,255,255,0.8);
+      max-width: 580px;
+      margin: 0 auto 36px;
       animation: fadeUp 0.8s ease-out 0.2s both;
     }
     
-    .hero-story strong {
-      color: white;
-      font-weight: 600;
-    }
-    
-    .hero-cta {
+    .cta-btn {
       display: inline-block;
-      background: white;
-      color: var(--accent);
-      padding: 18px 40px;
-      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      padding: 16px 36px;
+      border-radius: 14px;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 17px;
       text-decoration: none;
       transition: all 0.3s;
       animation: fadeUp 0.8s ease-out 0.4s both;
     }
     
-    .hero-cta:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(255,255,255,0.2);
+    .cta-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(232, 93, 4, 0.35);
     }
     
-    /* FLOATING PROOF */
-    .floating-cards {
+    /* FLOAT */
+    .floating-proof {
       position: absolute;
       inset: 0;
       pointer-events: none;
     }
     
-    .float-card {
+    .fp {
       position: absolute;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 16px;
-      padding: 16px 20px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 16px 22px;
       color: white;
       font-size: 14px;
       animation: float 5s ease-in-out infinite;
     }
     
-    .float-card:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
-    .float-card:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
-    .float-card:nth-child(3) { bottom: 25%; left: 12%; animation-delay: 2s; }
-    .float-card:nth-child(4) { bottom: 20%; right: 8%; animation-delay: 0.5s; }
+    .fp:nth-child(1) { top: 18%; left: 8%; animation-delay: 0s; }
+    .fp:nth-child(2) { top: 22%; right: 10%; animation-delay: 1.2s; }
+    .fp:nth-child(3) { bottom: 25%; left: 12%; animation-delay: 0.6s; }
+    .fp:nth-child(4) { bottom: 22%; right: 8%; animation-delay: 1.8s; }
     
-    .float-card .icon { font-size: 24px; margin-bottom: 6px; }
-    .float-card .value { font-weight: 700; font-size: 18px; }
-    .float-card .label { opacity: 0.7; font-size: 12px; }
+    .fp-icon { font-size: 22px; margin-bottom: 6px; }
+    .fp-val { font-weight: 700; font-size: 17px; }
+    .fp-lbl { opacity: 0.65; font-size: 12px; }
     
-    /* STATS BAR */
-    .stats-bar {
+    /* STATS */
+    .stats {
+      padding: 70px 24px;
       background: var(--bg-alt);
-      padding: 60px 24px;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      max-width: 900px;
+      gap: 36px;
+      max-width: 860px;
       margin: 0 auto;
       text-align: center;
     }
     
-    .stat-item {
-      animation: fadeUp 0.6s ease-out;
-    }
-    
-    .stat-item:nth-child(2) { animation-delay: 0.1s; }
-    .stat-item:nth-child(3) { animation-delay: 0.2s; }
-    
-    .stat-number {
-      font-size: 56px;
+    .stat-n {
+      font-size: 52px;
       font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      line-height: 1;
     }
     
-    .stat-label {
+    .stat-l {
       font-size: 15px;
       color: var(--text-muted);
       margin-top: 8px;
     }
     
-    /* SECTION BASICS */
-    .section { padding: 100px 24px; }
-    .section-alt { background: var(--bg-alt); }
+    /* PAIN */
+    .pain {
+      padding: 100px 24px;
+    }
     
-    .section-label {
+    .section-lbl {
       font-size: 13px;
       font-weight: 600;
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       margin-bottom: 12px;
     }
     
     h2 {
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(30px, 5vw, 46px);
       font-weight: 700;
       margin-bottom: 20px;
       line-height: 1.15;
@@ -245,85 +188,42 @@
     .section-desc {
       font-size: 18px;
       color: var(--text-muted);
-      max-width: 600px;
-      margin-bottom: 48px;
+      max-width: 580px;
+      margin-bottom: 40px;
     }
     
-    /* PAIN TO STORY */
     .pain-story {
       max-width: 700px;
-      margin: 0 auto 48px;
-      font-size: 20px;
-      line-height: 1.7;
-      color: var(--text);
+      margin: 0 auto 50px;
+      font-size: 19px;
+      line-height: 1.75;
     }
     
-    .pain-story .highlight {
-      background: linear-gradient(135deg, #fef3c7, #fde68a);
+    .pain-story strong { color: var(--accent); font-weight: 600; }
+    .pain-story .yell {
+      background: #fff3cd;
       padding: 2px 8px;
       border-radius: 4px;
     }
     
-    /* BEFORE/AFTER - Visual Demo */
-    .demo-section {
-      padding: 100px 24px;
-      background: var(--bg-dark);
-      color: white;
+    /* DAY CARD */
+    .day-card {
+      border-radius: 24px;
+      padding: 36px;
+      margin-bottom: 32px;
     }
     
-    .demo-section h2 {
-      color: white;
-      text-align: center;
+    .day-bad {
+      background: linear-gradient(135deg, #fff5f5, #fff);
+      border: 2px solid #fecaca;
     }
     
-    .demo-section .section-desc {
-      color: rgba(255,255,255,0.7);
-      text-align: center;
+    .day-good {
+      background: linear-gradient(135deg, #f0fdf4, #fff);
+      border: 2px solid #bbf7d0;
     }
     
-    .comparison-visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      max-width: 950px;
-      margin: 0 auto;
-    }
-    
-    .demo-card {
-      border-radius: 20px;
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .demo-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-    }
-    
-    .demo-bad {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    
-    .demo-bad::before {
-      background: linear-gradient(90deg, var(--danger), #f87171);
-    }
-    
-    .demo-good {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    
-    .demo-good::before {
-      background: linear-gradient(90deg, var(--success), #34d399);
-    }
-    
-    .demo-label {
+    .day-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -334,229 +234,152 @@
       margin-bottom: 20px;
     }
     
-    .demo-bad .demo-label {
-      background: rgba(239, 68, 68, 0.2);
-      color: #f87171;
-    }
+    .day-bad .day-label { background: #fee2e2; color: #dc2626; }
+    .day-good .day-label { background: #dcfce7; color: #16a34a; }
     
-    .demo-good .demo-label {
-      background: rgba(34, 197, 94, 0.2);
-      color: #34d399;
-    }
-    
-    .demo-time {
-      font-size: 12px;
-      opacity: 0.6;
-      margin-bottom: 16px;
-    }
-    
-    .task-row {
+    .task {
       display: flex;
       align-items: center;
       gap: 14px;
       padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
       font-size: 15px;
     }
     
-    .task-row:last-child {
-      border-bottom: none;
-    }
+    .task:last-child { border-bottom: none; }
     
     .task-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
+      font-size: 17px;
     }
     
-    .demo-bad .task-icon {
-      background: rgba(239, 68, 68, 0.15);
-    }
-    
-    .demo-good .task-icon {
-      background: rgba(34, 197, 94, 0.15);
-    }
+    .day-bad .task-icon { background: #fee2e2; }
+    .day-good .task-icon { background: #dcfce7; }
     
     .task-text { flex: 1; }
     
-    .task-status {
+    .task-time {
       font-size: 13px;
       padding: 4px 10px;
       border-radius: 12px;
     }
     
-    .demo-bad .task-status {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-    }
+    .day-bad .task-time { background: #fee2e2; color: #dc2626; }
+    .day-good .task-time { background: #dcfce7; color: #16a34a; }
     
-    .demo-good .task-status {
-      background: rgba(34, 197, 94, 0.15);
-      color: #34d399;
-    }
-    
-    .demo-result {
-      margin-top: 24px;
+    .day-result {
+      margin-top: 22px;
       padding: 16px 20px;
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       gap: 12px;
       font-weight: 600;
+      font-size: 16px;
     }
     
-    .demo-bad .demo-result {
-      background: rgba(239, 68, 68, 0.1);
-      color: #f87171;
-    }
+    .day-bad .day-result { background: #fee2e2; color: #dc2626; }
+    .day-good .day-result { background: #dcfce7; color: #16a34a; }
+    .day-result .emo { font-size: 24px; }
     
-    .demo-good .demo-result {
-      background: rgba(34, 197, 94, 0.1);
-      color: #34d399;
-    }
-    
-    .demo-result .emoji { font-size: 24px; }
-    
-    /* USE CASES */
-    .cases-section {
+    /* CASES */
+    .cases {
       padding: 100px 24px;
-    }
-    
-    .cases-scroll {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      padding-bottom: 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    .cases-scroll::-webkit-scrollbar {
-      height: 6px;
-    }
-    
-    .cases-scroll::-webkit-scrollbar-track {
       background: var(--bg-alt);
-      border-radius: 3px;
     }
     
-    .cases-scroll::-webkit-scrollbar-thumb {
-      background: var(--text-light);
-      border-radius: 3px;
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 24px;
     }
     
     .case-card {
-      flex-shrink: 0;
-      width: 320px;
       background: white;
-      border: 1px solid rgba(0,0,0,0.08);
       border-radius: 20px;
       padding: 28px;
-      scroll-snap-align: start;
-      transition: all 0.3s;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.35s;
     }
     
     .case-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.1);
       border-color: var(--accent);
     }
     
-    .case-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-    
     .case-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
+      font-size: 40px;
+      margin-bottom: 16px;
+      display: block;
     }
     
-    .case-card:nth-child(odd) .case-icon {
-      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-    }
-    
-    .case-card:nth-child(even) .case-icon {
-      background: linear-gradient(135deg, #fce7f3, #fbcfe8);
-    }
-    
-    .case-title {
+    .case-who {
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
     
-    .case-subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    
-    .case-description {
+    .case-quote {
       font-size: 15px;
       color: var(--text-muted);
       margin-bottom: 16px;
-      line-height: 1.6;
+      line-height: 1.65;
+      font-style: italic;
     }
     
-    .case-actions {
+    .case-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
     
-    .case-action {
+    .case-tag {
       background: var(--bg-alt);
-      padding: 6px 12px;
+      padding: 5px 12px;
       border-radius: 8px;
       font-size: 12px;
       color: var(--text-muted);
     }
     
-    /* HOW IT WORKS */
-    .how-section {
+    /* STEPS */
+    .steps {
       padding: 100px 24px;
-      background: var(--bg-alt);
     }
     
-    .steps-flow {
-      max-width: 800px;
+    .steps-list {
+      max-width: 750px;
       margin: 0 auto;
     }
     
-    .step-item {
+    .step {
       display: flex;
-      gap: 28px;
+      gap: 24px;
       align-items: flex-start;
-      padding: 28px;
+      padding: 26px;
       background: white;
-      border-radius: 16px;
-      margin-bottom: 20px;
+      border-radius: 18px;
+      margin-bottom: 18px;
       border: 1px solid rgba(0,0,0,0.06);
       transition: all 0.3s;
     }
     
-    .step-item:hover {
-      transform: translateX(8px);
+    .step:hover {
+      transform: translateX(10px);
       border-color: var(--accent);
-      box-shadow: 0 8px 30px rgba(0,117,222,0.1);
+      box-shadow: 0 8px 30px rgba(232, 93, 4, 0.08);
     }
     
-    .step-number {
-      width: 48px;
-      height: 48px;
+    .step-n {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: white;
       display: flex;
       align-items: center;
@@ -566,130 +389,49 @@
       flex-shrink: 0;
     }
     
-    .step-content h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
+    .step h3 { font-size: 18px; margin-bottom: 6px; }
+    .step p { font-size: 15px; color: var(--text-muted); margin-bottom: 10px; }
     
-    .step-content p {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-    
-    .step-example {
+    .step-tip {
       background: var(--bg-alt);
       border-radius: 10px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       font-size: 13px;
       color: var(--text-muted);
       border-left: 3px solid var(--accent);
     }
     
-    /* SOCIAL PROOF */
-    .proof-section {
-      padding: 100px 24px;
-    }
-    
-    .proof-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    
-    .proof-card {
-      background: white;
-      border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 16px;
-      padding: 28px;
-    }
-    
-    .proof-quote {
-      font-size: 16px;
-      font-style: italic;
-      color: var(--text);
-      margin-bottom: 20px;
-      line-height: 1.7;
-    }
-    
-    .proof-quote::before {
-      content: '"';
-      font-size: 48px;
-      color: var(--accent);
-      line-height: 0;
-      display: block;
-      margin-bottom: 8px;
-    }
-    
-    .proof-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .proof-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 600;
-      font-size: 16px;
-    }
-    
-    .proof-name {
-      font-weight: 600;
-      font-size: 15px;
-    }
-    
-    .proof-role {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    
     /* TIMELINE */
-    .timeline-section {
+    .timeline {
       padding: 100px 24px;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: white;
     }
     
-    .timeline-section h2 {
-      color: white;
-    }
+    .timeline h2 { color: white; }
+    .timeline .section-desc { color: rgba(255,255,255,0.85); }
     
-    .timeline-section .section-desc {
-      color: rgba(255,255,255,0.85);
-    }
-    
-    .timeline-list {
-      max-width: 600px;
+    .ev-list {
+      max-width: 550px;
       margin: 0 auto;
     }
     
-    .timeline-item {
+    .ev-item {
       display: flex;
-      gap: 20px;
-      margin-bottom: 24px;
+      gap: 18px;
+      margin-bottom: 22px;
       align-items: flex-start;
     }
     
-    .timeline-time {
+    .ev-time {
       background: rgba(255,255,255,0.2);
       padding: 6px 14px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 600;
-      white-space: nowrap;
     }
     
-    .timeline-content {
-      font-size: 16px;
-      opacity: 0.95;
-    }
+    .ev-text { font-size: 16px; opacity: 0.95; }
     
     /* CTA */
     .cta-section {
@@ -705,18 +447,15 @@
       position: absolute;
       inset: 0;
       background: 
-        radial-gradient(circle at 30% 50%, rgba(0, 117, 222, 0.4) 0%, transparent 50%),
-        radial-gradient(circle at 70% 50%, rgba(139, 92, 246, 0.4) 0%, transparent 50%);
+        radial-gradient(circle at 35% 50%, rgba(232, 93, 4, 0.35) 0%, transparent 50%),
+        radial-gradient(circle at 65% 50%, rgba(244, 140, 6, 0.35) 0%, transparent 50%);
     }
     
-    .cta-section .container {
-      position: relative;
-      z-index: 1;
-    }
+    .cta-section .container { position: relative; z-index: 1; }
     
     .cta-section h2 {
       color: white;
-      font-size: clamp(32px, 5vw, 52px);
+      font-size: clamp(30px, 5vw, 50px);
     }
     
     .cta-section p {
@@ -725,40 +464,35 @@
       margin-bottom: 36px;
     }
     
-    .cta-button {
+    .cta-main {
       display: inline-block;
       background: white;
       color: var(--accent);
       padding: 18px 44px;
-      border-radius: 12px;
+      border-radius: 14px;
       font-weight: 700;
       font-size: 18px;
       text-decoration: none;
       transition: all 0.3s;
     }
     
-    .cta-button:hover {
+    .cta-main:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(255,255,255,0.2);
+      box-shadow: 0 18px 45px rgba(255,255,255,0.2);
     }
     
-    /* FOOTER */
     footer {
-      padding: 40px;
+      padding: 36px;
       background: var(--bg-dark);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.5);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.4);
       text-align: center;
       font-size: 14px;
     }
     
-    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .comparison-visual { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr; gap: 32px; }
-      .float-card { display: none; }
-      .cases-scroll { flex-wrap: wrap; }
-      .case-card { width: 100%; }
+      .fp { display: none; }
+      .stats-grid { grid-template-columns: 1fr; gap: 28px; }
     }
   </style>
 </head>
@@ -766,254 +500,148 @@
   
   <!-- HERO -->
   <section class="hero">
-    <div class="floating-cards">
-      <div class="float-card">
-        <div class="icon">⏰</div>
-        <div class="value">4 часа</div>
-        <div class="label">в день на рутину</div>
-      </div>
-      <div class="float-card">
-        <div class="icon">✅</div>
-        <div class="value">∞</div>
-        <div class="label">задач параллельно</div>
-      </div>
-      <div class="float-card">
-        <div class="icon">😴</div>
-        <div class="value">24/7</div>
-        <div class="label">работают пока ты спишь</div>
-      </div>
-      <div class="float-card">
-        <div class="icon">💸</div>
-        <div class="value">2.5 недели</div>
-        <div class="label">свободного времени в год</div>
-      </div>
+    <div class="floating-proof">
+      <div class="fp"><div class="fp-icon">⏰</div><div class="fp-val">4 часа</div><div class="fp-lbl">рутины в день</div></div>
+      <div class="fp"><div class="fp-icon">😊</div><div class="fp-val">2 часа</div><div class="fp-lbl">свободного вечером</div></div>
+      <div class="fp"><div class="fp-icon">💤</div><div class="fp-val">24/7</div><div class="fp-lbl">работают пока спишь</div></div>
+      <div class="fp"><div class="fp-icon">🎉</div><div class="fp-val">1 вечер</div><div class="fp-lbl">чтобы начать</div></div>
     </div>
     
     <div class="hero-content">
-      <h1 class="hero-hook">Представь: утро понедельника...</h1>
-      <p class="hero-story">
-        ...а тебе <strong>не нужно</strong> открывать почту. 
-        Не нужно перебирать 47 непрочитанных. 
-        Бот уже разобрал, написал ответы, сохранил в заметки.<br><br>
-        <strong>Ты</strong> — пьёшь кофе и занимаешься тем, что важно.
+      <div class="hero-badge">👋 Это изменит твой день</div>
+      <h1>Представь: <span>рутина делается сама</span>, пока ты занимаешься жизнью</h1>
+      <p class="hero-sub">
+        Бот читает почту, пишет ответы, напоминает о делах, собирает инфу — 
+        пока ты с семьёй, в спортзале или просто отдыхаешь.
       </p>
-      <a href="#" class="hero-cta">Хочу так же →</a>
+      <a href="#" class="cta-btn">Хочу так →</a>
     </div>
   </section>
   
   <!-- STATS -->
-  <section class="stats-bar">
+  <section class="stats">
     <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number">2.5</div>
-        <div class="stat-label">недели в год — рутина</div>
+      <div>
+        <div class="stat-n">2.5 нед.</div>
+        <div class="stat-l">в год на рутину</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">85%</div>
-        <div class="stat-label">рутины автоматизируется</div>
+      <div>
+        <div class="stat-n">85%</div>
+        <div class="stat-l">можно автоматизировать</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">30 мин</div>
-        <div class="stat-label">вместо 4 часов</div>
+      <div>
+        <div class="stat-n">30 мин</div>
+        <div class="stat-l">вместо 4 часов</div>
       </div>
     </div>
   </section>
   
   <!-- PAIN -->
-  <section class="section">
+  <section class="pain">
     <div class="container">
-      <p class="section-label">Знакомо?</p>
-      <h2>Этот список дел... он же бесконечный</h2>
+      <p class="section-lbl">Знакомо?</p>
+      <h2>Этот список дел... он вечный</h2>
       
       <p class="pain-story">
-        Понедельник, 9 утра. Кофе ещё не допит, а на душе уже:
-        <span class="highlight">«Нужно ответить клиенту. Обновить таблицу. Проверить заказы. 
-        Написать отчёт. Найти инфу в чатах...»</span>
-        <br><br>
-        И так — каждый день. Ты тратишь <strong>4+ часа</strong> на то, что должно делаться само.
-        А вечером понимаешь: занимался бумажной работой, а не бизнесом.
+        Вечер воскресенья. <strong>«Завтра... надо ответить Саше. 
+        Обновить таблицу. Записаться к врачу. Найти подарок маме. 
+        Проверить, что там с заказом...»</strong><br><br>
+        И так каждый день. Ты тратишь <span class="yell">4+ часа</span> на то, 
+        что должно делаться само. А вечером: «О, я же ничего не сделал!»
       </p>
       
-      <div class="comparison-visual" style="margin-top: 60px;">
-        <div class="demo-card demo-bad">
-          <span class="demo-label">❌ Раньше: твой типичный день</span>
-          <div class="demo-time">Тратишь время на...</div>
-          
-          <div class="task-row">
-            <div class="task-icon">📧</div>
-            <div class="task-text">Разобрать почту (40+ писем)</div>
-            <div class="task-status">1.5 часа</div>
-          </div>
-          <div class="task-row">
-            <div class="task-icon">✍️</div>
-            <div class="task-text">Написать 12 ответов клиентам</div>
-            <div class="task-status">1 час</div>
-          </div>
-          <div class="task-row">
-            <div class="task-icon">📊</div>
-            <div class="task-text">Обновить таблицы вручную</div>
-            <div class="task-status">45 минут</div>
-          </div>
-          <div class="task-row">
-            <div class="task-icon">🔍</div>
-            <div class="task-text">Найти инфу в чатах</div>
-            <div class="task-status">30 минут</div>
-          </div>
-          <div class="task-row">
-            <div class="task-icon">📝</div>
-            <div class="task-text">Записать идеи куда попало</div>
-            <div class="task-status">15 минут</div>
-          </div>
-          
-          <div class="demo-result">
-            <span class="emoji">😩</span>
-            <span>4+ часа потрачено. Голова пухнет. Реальная работа — завтра.</span>
-          </div>
-        </div>
-        
-        <div class="demo-card demo-good">
-          <span class="demo-label">✅ Теперь: твой типичный день</span>
-          <div class="demo-time">Бот делает за тебя...</div>
-          
-          <div class="task-row">
-            <div class="task-icon">📧</div>
-            <div class="task-text">Разобрал почту, написал черновики</div>
-            <div class="task-status">✓ Готово</div>
-          </div>
-          <div class="task-row">
-            <div class="task-icon">✅</div>
-            <div class="task-text">Проверил — одобрил — отправиил</div>
-            <div class="task-status">✓ 10 минут</div>
-          </div>
-          <div class="task-row">
-            <div class="task-icon">📊</div>
-            <div class="task-text">Таблицы обновились сами</div>
-            <div class="task-status">✓ Готово</div>
-          </div>
-          <div class="task-row">
-            <div class="task-icon">🔍</div>
-            <div class="task-text">Всё в одном месте — в заметках</div>
-            <div class="task-status">✓ Нашёл</div>
-          </div>
-          <div class="task-row">
-            <div class="task-icon">💡</div>
-            <div class="task-text">Новые идеи — тоже в заметках</div>
-            <div class="task-status">✓ Сохранено</div>
-          </div>
-          
-          <div class="demo-result">
-            <span class="emoji">😎</span>
-            <span>30 минут контроля. Остаток дня — на себя.</span>
-          </div>
-        </div>
+      <div class="day-card day-bad">
+        <span class="day-label">😩 Было: твой типичный вечер</span>
+        <div class="task"><div class="task-icon">📧</div><div class="task-text">Разобрать рабочую почту (30+ писем)</div><div class="task-time">1.5 часа</div></div>
+        <div class="task"><div class="task-icon">✍️</div><div class="task-text">Написать 8 ответов, 3 отложить</div><div class="task-time">1 час</div></div>
+        <div class="task"><div class="task-icon">📱</div><div class="task-text">Пролистать чаты — найти «а где заказ?»</div><div class="task-time">40 мин</div></div>
+        <div class="task"><div class="task-icon">📝</div><div class="task-text">Записать «надо не забыть» (и забыть)</div><div class="task-time">15 мин</div></div>
+        <div class="day-result"><span class="emo">😫</span> 4 часа. Жизнь — завтра.</div>
+      </div>
+      
+      <div class="day-card day-good">
+        <span class="day-label">😎 Стало: твой типичный вечер</span>
+        <div class="task"><div class="task-icon">✅</div><div class="task-text">Бот разобрал почту, написал черновики</div><div class="task-time">✓ Готово</div></div>
+        <div class="task"><div class="task-icon">👀</div><div class="task-text">Пробежался — «OK, отправить» (10 мин)</div><div class="task-time">✓ 10 мин</div></div>
+        <div class="task"><div class="task-icon">📊</div><div class="task-text">Всё в заметках — и рабочее, и личное</div><div class="task-time">✓ Нашёл</div></div>
+        <div class="task"><div class="task-icon">💡</div><div class="task-text">Новые идеи — тоже там, не потеряются</div><div class="task-time">✓ Сохранено</div></div>
+        <div class="day-result"><span class="emo">🎉</span> 30 минут. Остаток вечера — твой.</div>
       </div>
     </div>
   </section>
   
-  <!-- USE CASES -->
-  <section class="cases-section section-alt">
+  <!-- CASES -->
+  <section class="cases">
     <div class="container">
-      <p class="section-label">Кому это нужно</p>
-      <h2>Вот что они реально делают</h2>
-      <p class="section-desc">Реальные истории. Реальные люди. Реальное время.</p>
-    </div>
-    
-    <div class="container">
-      <div class="cases-scroll">
+      <p class="section-lbl">Кому это нужно</p>
+      <h2>Вот что боты делают для обычных людей</h2>
+      <p class="section-desc">Не для программистов. Не для гиков. Для всех, кто устал.</p>
+      
+      <div class="cases-grid">
         
         <div class="case-card">
-          <div class="case-header">
-            <div class="case-icon">💻</div>
-            <div>
-              <div class="case-title">Фрилансер Дизайнер</div>
-              <div class="case-subtitle">Артём, Москва</div>
-            </div>
-          </div>
-          <p class="case-description">«Раньше: 2 часа на почту каждый день. Теперь: утром за 10 минут просматриваю черновики от бота, корректирую, отправляю. За месяц сэкономил 40 часов — это почти целая рабочая неделя.»</p>
-          <div class="case-actions">
-            <span class="case-action">ТЗ → черновики</span>
-            <span class="case-action">Клиенты</span>
-            <span class="case-action">Дедлайны</span>
+          <span class="case-icon">👨‍👩‍👧</span>
+          <div class="case-who">Родителям</div>
+          <p class="case-quote">«Школа, кружки, врачи — всё в разных чатах. Бот собрал: «У Саши контрольная завтра». «У Пети врач в 15:00». Напоминает заранее. Перестал забывать.»</p>
+          <div class="case-tags">
+            <span class="case-tag">Расписание</span>
+            <span class="case-tag">Школа</span>
+            <span class="case-tag">Напоминания</span>
           </div>
         </div>
         
         <div class="case-card">
-          <div class="case-header">
-            <div class="case-icon">🛒</div>
-            <div>
-              <div class="case-title">Магазин запчастей</div>
-              <div class="case-subtitle">Сергей, Уфа</div>
-            </div>
-          </div>
-          <p class="case-description">«100 заказов в день. На каждый — ответить, проверить наличие, записать. Бот читает сообщения, подготавливает ответы, обновляет остатки. Я только подтверждаю.»</p>
-          <div class="case-actions">
-            <span class="case-action">Заказы</span>
-            <span class="case-action">Остатки</span>
-            <span class="case-action">CRM</span>
+          <span class="case-icon">🛒</span>
+          <div class="case-who">Тем, кто что-то продаёт</div>
+          <p class="case-quote">«Avito, WB, Ozon — 50 сообщений в день. Бот читает,categorизирует: «вопрос по товару», «оплата», «когда придёт?». Пишет ответы. Я только подтверждаю.»</p>
+          <div class="case-tags">
+            <span class="case-tag">Маркетплейсы</span>
+            <span class="case-tag">Ответы</span>
+            <span class="case-tag">Заказы</span>
           </div>
         </div>
         
         <div class="case-card">
-          <div class="case-header">
-            <div class="case-icon">📱</div>
-            <div>
-              <div class="case-title">Курсы по маркетингу</div>
-              <div class="case-subtitle">Марина, онлайн</div>
-            </div>
-          </div>
-          <p class="case-description">«Каждый день — 50+ вопросов от студентов. Бот читает, categorизирует: «по уроку 3», «оплата», «сертификат». Пишет ответы. Я утверждаю — 5 минут в день вместо 2 часов.»</p>
-          <div class="case-actions">
-            <span class="case-action">Поддержка</span>
-            <span class="case-action">Контент</span>
-            <span class="case-action">Рассылки</span>
+          <span class="case-icon">💻</span>
+          <div class="case-who">Фрилансерам</div>
+          <p class="case-quote">«2 часа на почту каждый день. Теперь: утром за 10 минут просматриваю черновики от бота, корректирую, отправляю. За месяц — целая рабочая неделя свободна.»</p>
+          <div class="case-tags">
+            <span class="case-tag">Клиенты</span>
+            <span class="case-tag">ТЗ</span>
+            <span class="case-tag">Дедлайны</span>
           </div>
         </div>
         
         <div class="case-card">
-          <div class="case-header">
-            <div class="case-icon">📋</div>
-            <div>
-              <div class="case-title">PM в IT-компании</div>
-              <div class="case-subtitle">Дмитрий, Питер</div>
-            </div>
-          </div>
-          <p class="case-description">«10 проектов, 30 человек. Каждый день — статус-митинги. Теперь: бот собирает отчёты, находит проблемы, присылает мне дайджест. О проблемах узнаю заранее, не на митинге.»</p>
-          <div class="case-actions">
-            <span class="case-action">Задачи</span>
-            <span class="case-action">Риски</span>
-            <span class="case-action">Отчёты</span>
+          <span class="case-icon">🏠</span>
+          <div class="case-who">Тем, у кого ремонт / дом</div>
+          <p class="case-quote">«10 рабочих, 50 сообщений. Бот читает: «электрик придёт в 14:00», «плитка на складе». Я открываю — всё в одном месте, не ищу по чатам.»</p>
+          <div class="case-tags">
+            <span class="case-tag">Ремонт</span>
+            <span class="case-tag">Рабочие</span>
+            <span class="case-tag">Всё в одном</span>
           </div>
         </div>
         
         <div class="case-card">
-          <div class="case-header">
-            <div class="case-icon">👨‍👩‍👧</div>
-            <div>
-              <div class="case-title">Папа двоих детей</div>
-              <div class="case-subtitle">Игорь, Екатеринбург</div>
-            </div>
-          </div>
-          <p class="case-description">«Школа, кружки, врачи — всё в разных чатах. Бот собирает: «у Саши завтра контрольная», «у Пети врач в 3». Напоминает заранее. Перестал забывать.»</p>
-          <div class="case-actions">
-            <span class="case-action">Расписание</span>
-            <span class="case-action">Напоминания</span>
-            <span class="case-action">Записи</span>
+          <span class="case-icon">✈️</span>
+          <div class="case-who">Путешественникам</div>
+          <p class="case-quote">«Летом — 3 страны. Бот нашёл отели, сравнил цены, проверил отзывы. Показал топ-5. Выбрала за 20 минут, раньше это занимало полдня.»</p>
+          <div class="case-tags">
+            <span class="case-tag">Отели</span>
+            <span class="case-tag">Билеты</span>
+            <span class="case-tag">Отзывы</span>
           </div>
         </div>
         
         <div class="case-card">
-          <div class="case-header">
-            <div class="case-icon">✈️</div>
-            <div>
-              <div class="case-title">Частый путешественник</div>
-              <div class="case-subtitle">Анна, фриланс</div>
-            </div>
-          </div>
-          <p class="case-description">«Летом — 3 страны. Бот нашёл отели, сравнил цены, проверил отзывы, оформил бронирование. Показал мне топ-5 вариантов. Выбрала за 20 минут вместо 4 часов.»</p>
-          <div class="case-actions">
-            <span class="case-action">Отели</span>
-            <span class="case-action">Билеты</span>
-            <span class="case-action">Маршруты</span>
+          <span class="case-icon">📚</span>
+          <div class="case-who">Тем, кто учится</div>
+          <p class="case-quote">«Курсы, статьи, видео — куча всего. Бот нашёл полезное, сохранил с краткими заметками. Не в 10 вкладках, а в одном месте.»</p>
+          <div class="case-tags">
+            <span class="case-tag">Курсы</span>
+            <span class="case-tag">Конспекты</span>
+            <span class="case-tag">Заметки</span>
           </div>
         </div>
         
@@ -1021,136 +649,69 @@
     </div>
   </section>
   
-  <!-- HOW IT WORKS -->
-  <section class="how-section">
+  <!-- HOW -->
+  <section class="steps">
     <div class="container">
-      <p class="section-label">Как это работает</p>
+      <p class="section-lbl">Как это работает</p>
       <h2>Проще, чем кажется</h2>
-      <p class="section-desc">Не нужно быть программистом. Не нужно разбираться в AI. Главное — уметь ставить задачу.</p>
+      <p class="section-desc">Не нужно быть программистом. Нужно уметь ставить задачу человеку — боту тоже.</p>
       
-      <div class="steps-flow">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3>Подключи то, что используешь</h3>
-            <p>Почта, Telegram, Google Sheets, любые сайты — что уже работает, то и подключи.</p>
-            <div class="step-example">
-              📧 Gmail + 📱 Telegram + 📊 Google Sheets
-            </div>
+      <div class="steps-list">
+        
+        <div class="step">
+          <div class="step-n">1</div>
+          <div>
+            <h3>Подключи свои сервисы</h3>
+            <p>Почта, Telegram, Google — что уже используешь, то и подключи.</p>
+            <div class="step-tip">📧 Gmail + 📱 Telegram + 📊 Google Docs</div>
           </div>
         </div>
         
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3>Скажи, что делать</h3>
-            <p>Простым языком. Не код, а задачу. «Читай новые письма. Если вопрос по ценам — отвечай по прайсу. Остальное — в заметки.»</p>
-            <div class="step-example">
-              «Клиент спрашивает про сроки? → Отправь: «Стандарт 2 недели, срочный — 3 дня»»
-            </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div>
+            <h3>Скажи боту что делать</h3>
+            <p>Простым языком. Не код, а задачу. «Читай новые письма. Если спрашивают про сроки — отвечай: 2 дня. Остальное — в заметки.»</p>
+            <div class="step-tip">💬 «Клиент спрашивает «когда?» → «Стандарт 2 дня, срочный 1 день»»</div>
           </div>
         </div>
         
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3>Результат — в заметки</h3>
-            <p>Всё сохраняется в одном месте. Открыл — увидел: и рабочее, и личное. Без поиска по 10 сервисам.</p>
-            <div class="step-example">
-              💡 Obsidian, Notion, Apple Notes — куда удобно
-            </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div>
+            <h3>Результат — в одном месте</h3>
+            <p>Всё сохраняется в заметках. Открыл — и рабочее, и личное. Без поиска.</p>
+            <div class="step-tip">💡 Notion, заметки телефона, или куда удобно</div>
           </div>
         </div>
         
-        <div class="step-item">
-          <div class="step-number">4</div>
-          <div class="step-content">
+        <div class="step">
+          <div class="step-n">4</div>
+          <div>
             <h3>Живи свою жизнь</h3>
-            <p>Бот работает 24/7. Ты — занимаешься клиентами, семьёй, собой. Реально важным.</p>
-            <div class="step-example">
-              ☕ Бот разобрал 47 писем. Ты — допиваешь кофе.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- SOCIAL PROOF -->
-  <section class="proof-section">
-    <div class="container">
-      <p class="section-label">Говорят те, кто попробовал</p>
-      <h2>Реальные люди. Реальные результаты.</h2>
-      
-      <div class="proof-grid">
-        <div class="proof-card">
-          <p class="proof-quote">Думал, это для гиков. Оказалось — для тех, кто устал делать одно и то же. За месяц вернул 20 часов. Это целый рабоный месяц.</p>
-          <div class="proof-author">
-            <div class="proof-avatar">АК</div>
-            <div>
-              <div class="proof-name">Алексей К.</div>
-              <div class="proof-role">Ownerr магазина, Казань</div>
-            </div>
+            <p>Бот работает 24/7. Ты — с семьёй, в спортзале, на диване.</p>
+            <div class="step-tip">☕ Бот разобрал 30 писем. Ты — пьёшь чай.</div>
           </div>
         </div>
         
-        <div class="proof-card">
-          <p class="proof-quote">У меня 200 клиентов. Раньше на поддержку уходило 3 часа в день. Теперь — 20 минут. Клиенты счастливы, я свободен.</p>
-          <div class="proof-author">
-            <div class="proof-avatar">ОП</div>
-            <div>
-              <div class="proof-name">Ольга П.</div>
-              <div class="proof-role">Консультант, Москва</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="proof-card">
-          <p class="proof-quote">Семья + работа + хобби = 24 часа. Бот забрал рутину, добавил 2 часа в день. Теперь успеваю всё.</p>
-          <div class="proof-author">
-            <div class="proof-avatar">МД</div>
-            <div>
-              <div class="proof-name">Максим Д.</div>
-              <div class="proof-role">Предприниматель, Уфа</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
   
   <!-- TIMELINE -->
-  <section class="timeline-section">
+  <section class="timeline">
     <div class="container">
-      <p class="section-label">Быстрый старт</p>
+      <p class="section-lbl">Быстрый старт</p>
       <h2>Этому реально можно научиться за вечер</h2>
-      <p class="section-desc">Не за неделю. Не за месяц. За один вечер.</p>
+      <p class="section-desc">Без программирования. Без сложных настроек.</p>
       
-      <div class="timeline-list">
-        <div class="timeline-item">
-          <span class="timeline-time">19:00</span>
-          <span class="timeline-content">Смотришь 2-3 коротких видео (дадим ссылки)</span>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-time">19:30</span>
-          <span class="timeline-content">Устанавливаешь бота (5-10 минут)</span>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-time">19:40</span>
-          <span class="timeline-content">Первый агент работает — делает что-то простое, но реальное</span>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-time">20:00</span>
-          <span class="timeline-content">Добавляешь второго. Понимаешь паттерн.</span>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-time">20:30</span>
-          <span class="timeline-content">Настраиваешь своего «ассистента» под свои задачи</span>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-time">21:00</span>
-          <span class="timeline-content">🍾 Экономишь 2-3 часа каждый день. Навсегда.</span>
-        </div>
+      <div class="ev-list">
+        <div class="ev-item"><span class="ev-time">19:00</span><span class="ev-text">Смотришь 2-3 коротких видео (дадим ссылки)</span></div>
+        <div class="ev-item"><span class="ev-time">19:30</span><span class="ev-text">Устанавливаешь бота (5-10 минут)</span></div>
+        <div class="ev-item"><span class="ev-time">19:40</span><span class="ev-text">Первый бот уже работает — делает что-то простое, но реальное</span></div>
+        <div class="ev-item"><span class="ev-time">20:00</span><span class="ev-text">Добавляешь второго. Понимаешь паттерн.</span></div>
+        <div class="ev-item"><span class="ev-time">20:30</span><span class="ev-text">Настраиваешь под свои задачи</span></div>
+        <div class="ev-item"><span class="ev-time">21:00</span><span class="ev-text">🍾 Готово. Теперь эти 2 часа — твои.</span></div>
       </div>
     </div>
   </section>
@@ -1158,14 +719,14 @@
   <!-- CTA -->
   <section class="cta-section">
     <div class="container">
-      <h2>Готов перестать быть роботом?</h2>
-      <p>Оставь почту — вышлем пошаговую инструкцию и работающие примеры агентов.</p>
-      <a href="#" class="cta-button">Получить инструкцию →</a>
+      <h2>Начнём?</h2>
+      <p>Оставь почту — вышлем пошаговую инструкцию и рабочие примеры.</p>
+      <a href="#" class="cta-main">Получить инструкцию →</a>
     </div>
   </section>
   
   <footer>
-    AI-агенты © 2026 — перестань делать рутину
+    AI-агенты © 2026
   </footer>
   
 </body>
